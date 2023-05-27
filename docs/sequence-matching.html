@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html" class="active"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">6.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">7.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">8.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html" class="active"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -204,7 +204,7 @@
 <p>The find the significance of a match, i.e. the probability of a match given sequences a and b we can use the logistic equation on the probabilities: </p>
 <p>\[ P(M|a, b) = \sigma (\log\frac{P(a, b|M)}{P(a, b|R)} + \log\frac{P(M)}{P(R)}) \]</p>
 <p>Another approach is finding the likelihood of a particular score being random rather than a match is to use <em>extreme value distributions</em>.</p>
-<p><img src="EVD.png" alt="EVD" /></p>
+<p><img src="Y3/3212/the-little-book-of-computational-biology/src/images/EVD.png" alt="EVD" /></p>
 <p>Where we sample multiple distributions, and take the most extreme value of each distribution to create an extreme value distribution.</p>
 <p>EVDs are more accurate the longer the string.</p>
 

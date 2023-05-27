@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html" class="active"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">6.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">7.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">8.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html" class="active"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -150,7 +150,75 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="hidden-markov-models"><a class="header" href="#hidden-markov-models">Hidden Markov Models</a></h1>
-<p>TBC</p>
+<p>In machine learning we often need to determine the probability of target \(y\) given the features \(x\), i.e. P(y|x). This is known as discrimination</p>
+<p>To model a sequence of states, the probability of the current state depends on all previous states. However, we can simplify this by the <strong>Markov Assumption</strong> which states that the current state only depends on the pervious state. This is overly simply for biological sequences</p>
+<p>We can extend this by creating a finite automata, at each time step:</p>
+<ul>
+<li>Model emits a an output (e.g. base, codon..)</li>
+<li>Model transmits to new states</li>
+</ul>
+<p>Each state has a certain probability of emitting different outputs, as well as certain probabilities of moving to new states, thus the next state depends only on the current. To use the model we only ever see the emissions, not the states, thus it is given a name: <strong>Hidden Markov Model</strong> </p>
+<p><img src="Y3/3212/the-little-book-of-computational-biology/src/images/dice-HMM.png" alt="Dice HMM" /></p>
+<p>Consider the HMM for a a pair of dice, one fair and one loaded. The arcs are the transmission probabilities between states and the nodes contain the emission probabilities of each state.</p>
+<p>The parameters are given:</p>
+<ul>
+<li>Emission in state i: \( e_i(l_n) = P(l_n|q_t = i) \)</li>
+<li>Transition in state i to j: \( q_{ij} = P(q_t = j|q_{t-1} = i) \)</li>
+</ul>
+<p>Where:</p>
+<ul>
+<li>\(l_n \) is a letter from an alphabet</li>
+<li>\( q_t \) is the state at time t</li>
+</ul>
+<p>To use a HMM, given an observed sequence of emissions we want to find the most probable sequence of states that generated them. </p>
+<p>To do this the <strong>Viterbi</strong> algorithm is used, which is an instance of dynamic programming. </p>
+<p>Where \( v_i(t) \) is the probability of being in state i at time t and \( v_0(0) = 1 \) and all others at time 0 are 0, indicating the start state.  Viterbi follows:</p>
+<ul>
+<li>For each time step:
+<ul>
+<li>For all states:
+<ul>
+<li>compute the probability of each state at this time step by multiplying the observed emission probability by the highest previous state and transmission to current state value.</li>
+<li>This is: \( \log v_i(t) = \log e_i(l_t) + \max_j(\log v_j(t-1) + \log a_{ij}) \)</li>
+</ul>
+</li>
+<li>Keep a pointer to the previous most likely state: \( ptr_t(i) = \underset{j}{argmax}(\log v_j(t-1) + \log a_{ij} ) \)</li>
+</ul>
+</li>
+</ul>
+<p>Note: Log probabilities are used to prevent numerical underflow</p>
+<p>Following the pointers backwards allows us find the most likely sequence of states which generated the observed sequence.</p>
+<p>However, this can be inaccurate. It is better to ask what the probability of being in a certain state at time t given sequence x. i.e. \( P(q_t = k | x) \)</p>
+<p>To do this we use Viterbi but replace the max with sum and changing the backwards section. This allows us to calculate the probability of a sequence, summed over all the possible paths. We can then plot the probabilities of all states at time t being a certain state. </p>
+<p>In biology, HMMs are used to inform unseen sequences based on the relative probabilities of each residue in a sequence. E.g. if a protein is a kinase protein, secondary structure probabilities, sections of genes.</p>
+<h4 id="training"><a class="header" href="#training">Training</a></h4>
+<p>However this relies on us knowing the probabilities within biology, which in reality we don't. To do this we need to train the model on known sequence and state paths. </p>
+<p>Given a sequence and state path we can count:</p>
+<ul>
+<li>The number of transitions between states: \( A_{ij} \)</li>
+<li>The count of emissions in each state: \( E_i(l) \)</li>
+</ul>
+<p>Using these we can estimate the parameter probabilities in HMMs: \[ e_i(l) = \frac{E_i(l)}{\sum_{l\in A}E_i(l)};\ a_{ij} = \frac{A_{ij}}{\sum_{k \in Q} A_{ik}} \]</p>
+<p>We may need to add pseudo-counts (i.e. Add-k Smoothing?) to allow transitions we don't see much in the training data. </p>
+<p>To train the model:</p>
+<ul>
+<li>Make initial guess at transition and emission probabilities</li>
+<li>repeat, until good estimation:
+<ul>
+<li>Calculate posterior probabilities - Expectation</li>
+<li>Calculate new transition and emission probabilities given previous - Maximisation</li>
+</ul>
+</li>
+</ul>
+<h4 id="designing"><a class="header" href="#designing">Designing</a></h4>
+<p>Designing the structure of a HMM (number of states, allowed transitions, order) is challenging as:</p>
+<ul>
+<li>Too few states: underfitting, fail to model significant differences</li>
+<li>Too many states: overfitting and poor generalisation, model noise</li>
+<li>Too many transitions can overfit, should represent real structure</li>
+<li>Markov property can impose too short range of a structure, can extend to higher-order dependencies </li>
+</ul>
+<p>GENESCAN is a fifth-order Markov model which was used to find genes. By looking for areas with a high &quot;CG&quot; pair content</p>
 
                     </main>
 
@@ -160,7 +228,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="population-dynamics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="neural.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -174,7 +242,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="population-dynamics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="neural.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

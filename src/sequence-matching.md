@@ -78,7 +78,7 @@ The find the significance of a match, i.e. the probability of a match given sequ
 
 Another approach is finding the likelihood of a particular score being random rather than a match is to use *extreme value distributions*.
 
-![EVD](EVD.png)
+![EVD](Y3/3212/the-little-book-of-computational-biology/src/images/EVD.png)
 
 Where we sample multiple distributions, and take the most extreme value of each distribution to create an extreme value distribution.
 

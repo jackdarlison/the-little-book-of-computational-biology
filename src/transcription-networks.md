@@ -61,7 +61,7 @@ By plugging into the initial velocity from assumption 2, and assuming that all e
 
 \\[ V_0 = \frac{V_{max}[S]}{K_m + [S]} \\]
 
-![MM Plot](MMplot.png)
+![MM Plot](Y3/3212/the-little-book-of-computational-biology/src/images/MMplot.png)
 
 From the plot we can see:
 - Pseudo-linear when substrate concentration is low
@@ -77,11 +77,11 @@ We can use the Hill Function to model the presence of repressors and activators.
 
 The **Repressor Hill function** is given: \\[ f(X) = \beta \frac{K^n}{K^n + X^n} \\]
 
-![RHF Plot](Y3/3212/the-little-book-of-computational-biology/src/RHF.png)
+![RHF Plot](Y3/3212/the-little-book-of-computational-biology/src/images/RHF.png)
 
 The **Activator Hill function** is given: \\[ f(X) = \beta \frac{X^n}{K^n + X^n} \\]
 
-![AHF Plot](AHF.png)
+![AHF Plot](Y3/3212/the-little-book-of-computational-biology/src/images/AHF.png)
 
 Where n=1 we have MM dynamics
 

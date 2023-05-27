@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html" class="active"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">6.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">7.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">8.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html" class="active"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -199,7 +199,7 @@ Where:</p>
 <p>By substituting \( [E] \) for \( [E_{total}] - [ES] \) and rearranging we get: \[ \frac{[E_{total}][S]}{K_m + [S]} = [ES] \]</p>
 <p>By plugging into the initial velocity from assumption 2, and assuming that all enzyme will be bound given sufficient substrate (i.e. \(V_{max} = k_2[E_{total}] \)) we get the Michaelis Menton Equation:</p>
 <p>\[ V_0 = \frac{V_{max}[S]}{K_m + [S]} \]</p>
-<p><img src="MMplot.png" alt="MM Plot" /></p>
+<p><img src="Y3/3212/the-little-book-of-computational-biology/src/images/MMplot.png" alt="MM Plot" /></p>
 <p>From the plot we can see:</p>
 <ul>
 <li>Pseudo-linear when substrate concentration is low</li>
@@ -214,9 +214,9 @@ Where:</p>
 <li>\( n \): the hill coefficient</li>
 </ul>
 <p>The <strong>Repressor Hill function</strong> is given: \[ f(X) = \beta \frac{K^n}{K^n + X^n} \]</p>
-<p><img src="Y3/3212/the-little-book-of-computational-biology/src/RHF.png" alt="RHF Plot" /></p>
+<p><img src="Y3/3212/the-little-book-of-computational-biology/src/images/RHF.png" alt="RHF Plot" /></p>
 <p>The <strong>Activator Hill function</strong> is given: \[ f(X) = \beta \frac{X^n}{K^n + X^n} \]</p>
-<p><img src="AHF.png" alt="AHF Plot" /></p>
+<p><img src="Y3/3212/the-little-book-of-computational-biology/src/images/AHF.png" alt="AHF Plot" /></p>
 <p>Where n=1 we have MM dynamics</p>
 <p>To model the promotor activity, where:</p>
 <ul>
