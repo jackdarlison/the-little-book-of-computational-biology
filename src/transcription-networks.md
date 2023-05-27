@@ -103,3 +103,26 @@ However, must transcription factors are comprised of repeated sub units, giving 
 In reality both the repressor and activator can bind to the gene at different points within the promotor. Therefore, we need a multidimensional input of both the activator and repressor concentrations
 
 
+#### Systems of Equations
+
+The reaction rate of \\( 2X + Y \overset{k}{\rightarrow} 3X \\) is \\( \frac{d[X]}{dt} = k[Y][X]^2 \\).
+
+To calculate this in number of molecules we need to divide the concentration by \\( \Omega \\) which is volume times Avogadros number,  giving us: \\[ \frac{1}{\Omega}\frac{d[X]}{dt} = k\frac{1}{\Omega^3}[Y][X]^2 \\] 
+
+We also need to factor in the volume of the reaction area
+
+**Gillespie's Algorithm** gives us a method of counting the number of molecules over time given a system of equations. 
+
+At each time interval \\([t, t + dt] \\):
+- We first calculate the **Propensity** of each equation, i.e. the probability of a reaction occurring. This is calculated for each equation though the reaction rate times the product concentration times the volume
+- We then draw a random time step from an exponential distribution on the total propensity of all the equations
+- Next, choose an equation to take place with probabilities based on their proportion of the total propensity.
+- Update the number of molecules based on the equation which took place
+
+
+Gillespies provides the best approximation to the true dynamics within a cell. It is purely numerical so does not provide much insight into how changing the parameters will change the dynamics. 
+
+It is often used to check the validity of other models such as ODEs and Monte Carlo
+
+However, computers are not fast enough to truly simulate chemical reactions. Chemical reactions can happen orders of magnitude faster, we may need to approximate or assume a quasi-equilibrium. 
+
