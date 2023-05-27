@@ -1,3 +1,25 @@
 # Cells
 
-TBC
+The human body is made of ~\\( 3 \times 10^{13} \\) consisting of roughly 200 cell types. 90% of the cells are red blood cells so do not contain DNA. The rest contain DNA in the nucleus, with some in the mitochondria (~37 Genes) 
+
+Mitosis is the process of cell replication. In which DNA is replicated, the cell is split, and two identical daughter cells are created from the original. The total number of chromosomes is maintained.
+
+Meiosis is the process of creating gametes (e.g. sperm and egg) from a cell. Gametes are haploid meaning there is only one copy of each chromosome, instead of the usual pairs. Meiosis follows a process of replicating DNA, recombining the chromosomes, splitting into 4 gametes 
+
+All cells in the body have a function, often the vehicle for synthesising proteins. Proteins can be:
+- Enzymes
+- Messengers (hormones...)
+- Structural
+- Transport
+- Storage
+
+Proteins get there functions via their various properties:
+- folding shape
+- size
+- polarity
+- pH
+- hydro properties
+
+Protein folding occurs in the *Endoplasmic Reticulum*, in addition the Golgi apparatus plays a role in the quality control and recycling, which is needed when they mis-fold.
+
+The cell cycle can be measured by concentrations of proteins in the cell. The time taken to build molecules, transcription, and translation is insignificant to the time taken for protein concentration to change, so we can assume they happen instantaneously

@@ -1,3 +1,0 @@
-# Chemical Equations
-
-TBC: 
