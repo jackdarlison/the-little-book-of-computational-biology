@@ -578,7 +578,136 @@ Where:</p>
 <li>Recycling</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="population-dynamics"><a class="header" href="#population-dynamics">Population Dynamics</a></h1>
-<p>TBC: </p>
+<p>Population dynamics looks at how population levels vary of time given certain factors. Formed by combining biostatistics and Mendelian inheritance</p>
+<p>Prior to Mendel it was thought characteristic were blended, <strong>Mendelian Inheritance</strong> is the idea that the parents characteristics are independent and children independent parts of both not a mix. </p>
+<p>Biostatistics cover the statistics population dynamics:</p>
+<ul>
+<li>Wright found:
+<ul>
+<li>Inbreeding gave more variation</li>
+<li>Small isolated populations led to more variation towards a local optima</li>
+</ul>
+</li>
+<li>Fisher found: 
+<ul>
+<li>Large populations don't need to worry about local optima</li>
+<li>Sufficiently large populations will always move &quot;uphill&quot;</li>
+</ul>
+</li>
+<li>Haldne found:
+<ul>
+<li>certain features are inherited together (e.g. genetic linkage)</li>
+<li>Provided evidence for inheritance via chromosomes</li>
+</ul>
+</li>
+</ul>
+<p>Modern synthesis of evolution brings together:</p>
+<ul>
+<li>Natural selection</li>
+<li>Population genetics</li>
+<li>Medelian genetics</li>
+</ul>
+<p>We know that:</p>
+<ul>
+<li>Genes can mutate</li>
+<li>Alleles are exchanged during sexual reproduction</li>
+<li>Evolutionary fitness measures the long term number of offspring</li>
+<li>Epistasis, genes interact</li>
+<li>Linkage disequilibrium</li>
+<li>Generations overlap</li>
+</ul>
+<h3 id="fisher-wright-model"><a class="header" href="#fisher-wright-model">Fisher Wright model</a></h3>
+<p>The FW model looks at how a single mutation can take over in a population.</p>
+<p>This model assumes:</p>
+<ul>
+<li>genes can be changed from one allele to another via mutation</li>
+<li>Alleles are exchanged during sexual reproduction</li>
+<li>Fitness is a measure of the expected number of offspring</li>
+<li>no epistasis</li>
+<li>linkage equilibrium</li>
+<li>generations do not overlap</li>
+</ul>
+<p>To make models with FW we make further assumptions:</p>
+<ul>
+<li>No gender</li>
+<li>Haploid (one copy of genes)</li>
+<li>Two states normal (P) and mutant (Q)</li>
+<li>Q has selective advantage of 1+s</li>
+<li>P mutates to Q at rate m</li>
+<li>Q mutates to P at rate n</li>
+<li>constant population size (N) (for infinite populations we can approximate using differential equation)</li>
+</ul>
+<p>Each generation follows:</p>
+<ul>
+<li>individuals produce seeds</li>
+<li>seeds mutate according to m and n</li>
+<li>sample N of the seeds</li>
+</ul>
+<p>In reality we don't use exact numbers for seeds, only the proportion of mutants compared to normal, the model:</p>
+<ul>
+<li>Find the proportion of mutants after seeding: \( p_s = \frac{(1+s)x}{N+sx} \) where x is the number of mutants in this generation</li>
+<li>Mutate the seeds and find the new proportion of mutants: \( p_{sm} = (1-n)p_s + m(1 - p_s) \)</li>
+<li>Sample N individuals, using a binomial with the proportion of mutants: \( P(x(t+1) = x) = \binom{N}{x} p^x_{sm}(1-p_{sm})^{N-x} \)</li>
+</ul>
+<p>If we presume that the population is infinite we can just use proportions instead of numbers: \[ p_x(t+1) = \frac{(1-n)(1+s)p_x(t) + m(1 - p_x(t))}{1 + sp_x(t)} \]</p>
+<p>Which can be approximated by a differential equation if the effects of selection and mutation are small: \[ \frac{dp_x}{dt} \approx p_x(t+1) - p_x(t) \]</p>
+<p>The problem with this is that if mutants are fitter, they will grow exponentially at the start. ODEs have much more rapid take over times than finite population models if low mutation rates</p>
+<p>Finite models are stochastic, where as infinite populations are deterministic.</p>
+<h3 id="markov-models"><a class="header" href="#markov-models">Markov Models</a></h3>
+<p>Evolving populations can be modelled using a Markov chains. </p>
+<p>To do this we define:</p>
+<ul>
+<li>A transition matrix \( W_{x', x} \) where each cell represents the probability from x to x' mutants.</li>
+<li>The probability of x mutants are updated with \( p(t+1) = Wp(t) \)</li>
+<li>The start prob for no mutants:  \( p(t=0) = [1, 0, 0, ...] \)</li>
+</ul>
+<p>Thus, \(p(t) = W^tp(0) \)</p>
+<p>This model creates a probability distribution over the number of mutants for each time step. </p>
+<p>The transition matrix is given: </p>
+<p>\[ W_{x', x} = \binom{N}{x'} p_sm(x)^{x'}(1-p_{sm}(x)^{N-x'}) \]</p>
+<p>Where:</p>
+<p>\[ p_{sm}(x) = \frac{(1-n)(1+s)x + m(N-x)}{N+sx} \]</p>
+<p>Markov models provide an exact analysis of population dynamics. However, as the  matrix is the size of the states + 1 squared, this model is infeasible for large populations.</p>
+<h3 id="stochastic-differential-equations"><a class="header" href="#stochastic-differential-equations">Stochastic Differential Equations</a></h3>
+<p>To model the randomness inherent in population dynamics, stochastic differential equations are used. These work best with weak selection and small mutation rates</p>
+<p>Presume a random walk (±1). The expectation of distance travelled is zero, as well as the expectation of number of steps in total. However, the expectation of the squared distance is somehow equal √N </p>
+<p>With random time steps dt and for a walk with distance x, the change is distance is measured:</p>
+<p>\[ dx = adt + bdW(t) \]</p>
+<p>where:</p>
+<ul>
+<li>a is the drift, i.e the expected change</li>
+<li>b is the variance, due to random processes</li>
+<li>W(t) is a random process drawing from a normal distribution with mean 0 and variance dt: i.e.  N(0, dt)</li>
+</ul>
+<p>This is closely related to a Maxwell-Boltzmann distribution.</p>
+<p>Applying this to evolution:</p>
+<ul>
+<li>Time steps are generations</li>
+<li>Distance is the number of mutants in the population</li>
+<li>dx is the change in mutants in each time step</li>
+</ul>
+<p>We get:</p>
+<p>\[ X(t+dt) = X(t) + a(X(t))dt + b(X(t))dW(t) \]</p>
+<p>Where:</p>
+<ul>
+<li>Expected change / drift: a(X(t)) = (p_{sm}(X(t)) - X(t))dt</li>
+<li>Variance: b(X(t)) = \frac{p_{sm}(X(t))(1-p_{sm}(X(t)))}{N}dt</li>
+</ul>
+<p>If s, m, and n are small then \( p_{sm} \approx X(t) \) and can be substituted in variance.</p>
+<p>We get a stochastic differential equation or SDE:</p>
+<p>\[ dX(t) = a(X(t))dt + b(X(t))dW(t) \]</p>
+<p>This is known as an Itô process which can be solved. There is no closed from solution for the differential of W(t) as this will also be stochastic. We can however solve the probability distribution: \( f(x, t)dx = P(x \le X(t) \lt x + dx) \)</p>
+<p>The solution to this is given by the <strong>Fokker-Planck</strong> equation (i.e. Forward Kolmogorov):</p>
+<p>\[ \frac{\partial f(x, t)}{\partial t} = -\frac{a(x)\partial f(x, t)}{\partial x} + \frac{1}{2} \frac{\partial^2(b^2(x)f(x, t))}{\partial x^2} \]</p>
+<p>However diffusion doesn't go backwards so we need to the Backward Kolmogorov:</p>
+<p>\[ \frac{\partial f(x, -t)}{\partial t} = -a(x)\frac{\partial f(x, -t)}{\partial x} + \frac{1}{2} b^2(x)\frac{\partial^2(f(x, -t))}{\partial x^2} \]</p>
+<p>This can be used to work out how long it might take to get to an absorbing state and how likely this state may be</p>
+<p>Fokker-Planck shifts the SDE into a PDE. This is hard to solve directly but can use numerical methods. This is almost identical to Markov Chain analysis and can scale well to large numbers</p>
+<h3 id="steady-state-distribution"><a class="header" href="#steady-state-distribution">Steady State Distribution</a></h3>
+<p>Solving the PDE is hard in the previous model. We can approximate this by solving for when it equals 0, i.e. when the distribution stops changing at t tends to ∞. This can be done as solving for t tends to ∞ does not depend on t. </p>
+<p>It is solved using the equation:</p>
+<p>\[ f_{eq}(x) = \frac{x^{2Nm-1}(1-x)^{Nn-1}e^{2Nsx}}{\text{Betaln}(2Nm, 2Nn)\text{Hyp1f1}(2Nm; 2N(m + n); 2Nsx)} \]</p>
+<p>This is a valid approximation as evolution is slow, which means the steady state is often seen. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="evolutionary-trees"><a class="header" href="#evolutionary-trees">Evolutionary Trees</a></h1>
 <p>TBC: </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="boolean-networks"><a class="header" href="#boolean-networks">Boolean Networks</a></h1>
