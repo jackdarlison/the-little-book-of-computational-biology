@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html" class="active"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Protein and Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html" class="active"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li><li class="chapter-item expanded "><a href="epigenetics.html"><strong aria-hidden="true">10.</strong> Epigenetics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -245,6 +245,26 @@ Where:</p>
 <p>Gillespies provides the best approximation to the true dynamics within a cell. It is purely numerical so does not provide much insight into how changing the parameters will change the dynamics. </p>
 <p>It is often used to check the validity of other models such as ODEs and Monte Carlo</p>
 <p>However, computers are not fast enough to truly simulate chemical reactions. Chemical reactions can happen orders of magnitude faster, we may need to approximate or assume a quasi-equilibrium. </p>
+<h4 id="creating-a-transcription-network"><a class="header" href="#creating-a-transcription-network">Creating a Transcription Network</a></h4>
+<p><em>for stem cell differentiation</em></p>
+<p>The first step is establishing the relative concentrations of different mRNA present within the cells at different timepoints. </p>
+<p>Correlation does not always imply causation:</p>
+<ul>
+<li>X could affect Y</li>
+<li>Y could affect X</li>
+<li>X and Y could be independent, but affected by Z</li>
+</ul>
+<p>For each mRNA we have a sequence of concentrations over time. From this we can determine if two mRNA molecules are correlated (excitation) or anti-correlated (inhibition)</p>
+<p>Pearson correlation is a measure of linear correlation between two sets of data, which measures correlation with cosine similarity. Which can be used to determine if the two mRNA molecules are correlated</p>
+<p>From the correlations/relationships we can create a gene regulation network. However we do not know about causation. </p>
+<p>Two random variables are statistically independent if P(X, Y) = P(X)P(Y), which implies the variables uncorrelated and have no causality. </p>
+<p>However, statistical independence is too powerful. So we use Conditional independence instead, i.e. P(X, Y|Z) = P(X|Z)P(Y|Z). This shows that we can have correlation but no direct causation between the two variables. </p>
+<p>It is very difficult to obtain a measure of causational probability, the best we can do is find an explanation of our variables with as few causal interactions as possible. </p>
+<p>It is possible to create a <em>Multi-variate Normal Distribution</em> to give a measure of correlation between two points. By finding the covariance  of the two points, and dividing by the square-root of the two individual variances. This can be used to create a matrix of correlation between two points:</p>
+<p>\[ q_{ij} = \frac{Cov(X_i, X_j)}{\sqrt{Var(X_i)Var(X_j)}} \]</p>
+<p>This can be used to find conditional independence between the variables, using maximum log-likelihood analysis. </p>
+<p>Regularisation, pushes some coordinates to 0 of the covariance matrix, allowing conditional independent variable to be considered with other variables.</p>
+<p>Using all the information gathered on correlation and causality between variables, a gene regulation network can be created</p>
 
                     </main>
 

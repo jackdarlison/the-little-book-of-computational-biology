@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Protein and Cells - The Little Book of Computational Biology</title>
+        <title>Epigenetics - The Little Book of Computational Biology</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html" class="active"><strong aria-hidden="true">2.</strong> Protein and Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li><li class="chapter-item expanded "><a href="epigenetics.html"><strong aria-hidden="true">10.</strong> Epigenetics</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Protein and Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li><li class="chapter-item expanded "><a href="epigenetics.html" class="active"><strong aria-hidden="true">10.</strong> Epigenetics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -149,54 +149,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="proteins-and-cells"><a class="header" href="#proteins-and-cells">Proteins and Cells</a></h1>
-<p>The human body is made of ~\( 3 \times 10^{13} \) consisting of roughly 200 cell types. 90% of the cells are red blood cells so do not contain DNA. The rest contain DNA in the nucleus, with some in the mitochondria (~37 Genes) </p>
-<p>Mitosis is the process of cell replication. In which DNA is replicated, the cell is split, and two identical daughter cells are created from the original. The total number of chromosomes is maintained.</p>
-<p>Meiosis is the process of creating gametes (e.g. sperm and egg) from a cell. Gametes are haploid meaning there is only one copy of each chromosome, instead of the usual pairs. Meiosis follows a process of replicating DNA, recombining the chromosomes, splitting into 4 gametes </p>
-<h3 id="proteins"><a class="header" href="#proteins">Proteins</a></h3>
-<p>All cells in the body have a function, often the vehicle for synthesising proteins. Proteins can be:</p>
-<ul>
-<li>Enzymes</li>
-<li>Messengers (hormones...)</li>
-<li>Structural</li>
-<li>Transport</li>
-<li>Storage</li>
-</ul>
-<p>Proteins get there functions via their various properties:</p>
-<ul>
-<li>folding shape</li>
-<li>size</li>
-<li>polarity</li>
-<li>pH</li>
-<li>hydro properties</li>
-</ul>
-<p>Protein folding occurs in the <em>Endoplasmic Reticulum</em>, in addition the Golgi apparatus plays a role in the quality control and recycling, which is needed when they mis-fold.</p>
-<p>The cell cycle can be measured by concentrations of proteins in the cell. The time taken to build molecules, transcription, and translation is insignificant to the time taken for protein concentration to change, so we can assume they happen instantaneously</p>
-<p>Protein structure can be split into four categories:</p>
-<ul>
-<li>Primary: The sequence of amino acids</li>
-<li>Secondary: Alpha helices, Beta sheets, or coils</li>
-<li>Tertiary: 3D structure</li>
-<li>Quaternary: protein complex</li>
-</ul>
-<h4 id="stem-cells"><a class="header" href="#stem-cells">Stem Cells</a></h4>
-<p>Mammalian cells are diploid, i.e. they have two sets of chromosomes, which means they have two very slightly different copies of the genome. One of these copies comes from the mother and one from the father. A mammals start as a single cell called a Zygote.</p>
-<p>This cell replicates until reaching the foetus stage, where the cells specialise into various functions.</p>
-<p>Stem cells are clones which differentiate into more specialised cells given certain growth factors. The expressions of the genes within the cells respond to environmental cues, causing them to differentiate. </p>
-<p>Understanding how stem cells specialise is key to understanding human development</p>
-<p>To do this, gene regulation networks are created for stem cell differentiation, i.e. a transcription network. </p>
+                        <h1 id="epigenetics"><a class="header" href="#epigenetics">Epigenetics</a></h1>
+<p>Epigenetics is the modification of the gene expression though the modification of the histone proteins and the methylation of some cytosine residues in the genomic DNA. Simply put these factors can provide an on/off switch for transcription, impacting the dynamics of the transcription network.</p>
+<p>Epigenetics process are considered key determinants that lead to different diseases. </p>
+<p>Histone acetylation can suppress the gene. DNA methylation of cytosine (C) can suppress or activate the gene</p>
+<p>Stem cells have more methylated CpG islands than somatic cells, thus  it is an important mechanism for specialisation of stem cells. </p>
+<p>Epigenetics can be seen as another component in a complex boolean network</p>
+<p>Cytosine methylation is inherited, thus defining some inherited diseases. This has led it to be considered as a fifth nucleic base in the genome</p>
+<h3 id="biological-oscillators"><a class="header" href="#biological-oscillators">Biological Oscillators</a></h3>
+<p>Do we need this??</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="DNA.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="boolean-networks.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="transcription-networks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -204,13 +174,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="DNA.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="boolean-networks.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="transcription-networks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

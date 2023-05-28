@@ -86,7 +86,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Protein and Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li><li class="chapter-item expanded "><a href="epigenetics.html"><strong aria-hidden="true">10.</strong> Epigenetics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -235,10 +235,11 @@
 <li>exact words matching is important.</li>
 <li>useful when looking for repeats</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="cells"><a class="header" href="#cells">Cells</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="proteins-and-cells"><a class="header" href="#proteins-and-cells">Proteins and Cells</a></h1>
 <p>The human body is made of ~\( 3 \times 10^{13} \) consisting of roughly 200 cell types. 90% of the cells are red blood cells so do not contain DNA. The rest contain DNA in the nucleus, with some in the mitochondria (~37 Genes) </p>
 <p>Mitosis is the process of cell replication. In which DNA is replicated, the cell is split, and two identical daughter cells are created from the original. The total number of chromosomes is maintained.</p>
 <p>Meiosis is the process of creating gametes (e.g. sperm and egg) from a cell. Gametes are haploid meaning there is only one copy of each chromosome, instead of the usual pairs. Meiosis follows a process of replicating DNA, recombining the chromosomes, splitting into 4 gametes </p>
+<h3 id="proteins"><a class="header" href="#proteins">Proteins</a></h3>
 <p>All cells in the body have a function, often the vehicle for synthesising proteins. Proteins can be:</p>
 <ul>
 <li>Enzymes</li>
@@ -257,6 +258,19 @@
 </ul>
 <p>Protein folding occurs in the <em>Endoplasmic Reticulum</em>, in addition the Golgi apparatus plays a role in the quality control and recycling, which is needed when they mis-fold.</p>
 <p>The cell cycle can be measured by concentrations of proteins in the cell. The time taken to build molecules, transcription, and translation is insignificant to the time taken for protein concentration to change, so we can assume they happen instantaneously</p>
+<p>Protein structure can be split into four categories:</p>
+<ul>
+<li>Primary: The sequence of amino acids</li>
+<li>Secondary: Alpha helices, Beta sheets, or coils</li>
+<li>Tertiary: 3D structure</li>
+<li>Quaternary: protein complex</li>
+</ul>
+<h4 id="stem-cells"><a class="header" href="#stem-cells">Stem Cells</a></h4>
+<p>Mammalian cells are diploid, i.e. they have two sets of chromosomes, which means they have two very slightly different copies of the genome. One of these copies comes from the mother and one from the father. A mammals start as a single cell called a Zygote.</p>
+<p>This cell replicates until reaching the foetus stage, where the cells specialise into various functions.</p>
+<p>Stem cells are clones which differentiate into more specialised cells given certain growth factors. The expressions of the genes within the cells respond to environmental cues, causing them to differentiate. </p>
+<p>Understanding how stem cells specialise is key to understanding human development</p>
+<p>To do this, gene regulation networks are created for stem cell differentiation, i.e. a transcription network. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="transcription-networks"><a class="header" href="#transcription-networks">Transcription Networks</a></h1>
 <p>Genes are controlled by transcriptions factors which excite or inhibit transcription within a gene. </p>
 <p>Transcription factors are made of proteins, thus, genes create a network of signals which can respond to stimuli such as glucose requirements and DNA repair, maintaining the balance of a cell</p>
@@ -353,6 +367,26 @@ Where:</p>
 <p>Gillespies provides the best approximation to the true dynamics within a cell. It is purely numerical so does not provide much insight into how changing the parameters will change the dynamics. </p>
 <p>It is often used to check the validity of other models such as ODEs and Monte Carlo</p>
 <p>However, computers are not fast enough to truly simulate chemical reactions. Chemical reactions can happen orders of magnitude faster, we may need to approximate or assume a quasi-equilibrium. </p>
+<h4 id="creating-a-transcription-network"><a class="header" href="#creating-a-transcription-network">Creating a Transcription Network</a></h4>
+<p><em>for stem cell differentiation</em></p>
+<p>The first step is establishing the relative concentrations of different mRNA present within the cells at different timepoints. </p>
+<p>Correlation does not always imply causation:</p>
+<ul>
+<li>X could affect Y</li>
+<li>Y could affect X</li>
+<li>X and Y could be independent, but affected by Z</li>
+</ul>
+<p>For each mRNA we have a sequence of concentrations over time. From this we can determine if two mRNA molecules are correlated (excitation) or anti-correlated (inhibition)</p>
+<p>Pearson correlation is a measure of linear correlation between two sets of data, which measures correlation with cosine similarity. Which can be used to determine if the two mRNA molecules are correlated</p>
+<p>From the correlations/relationships we can create a gene regulation network. However we do not know about causation. </p>
+<p>Two random variables are statistically independent if P(X, Y) = P(X)P(Y), which implies the variables uncorrelated and have no causality. </p>
+<p>However, statistical independence is too powerful. So we use Conditional independence instead, i.e. P(X, Y|Z) = P(X|Z)P(Y|Z). This shows that we can have correlation but no direct causation between the two variables. </p>
+<p>It is very difficult to obtain a measure of causational probability, the best we can do is find an explanation of our variables with as few causal interactions as possible. </p>
+<p>It is possible to create a <em>Multi-variate Normal Distribution</em> to give a measure of correlation between two points. By finding the covariance  of the two points, and dividing by the square-root of the two individual variances. This can be used to create a matrix of correlation between two points:</p>
+<p>\[ q_{ij} = \frac{Cov(X_i, X_j)}{\sqrt{Var(X_i)Var(X_j)}} \]</p>
+<p>This can be used to find conditional independence between the variables, using maximum log-likelihood analysis. </p>
+<p>Regularisation, pushes some coordinates to 0 of the covariance matrix, allowing conditional independent variable to be considered with other variables.</p>
+<p>Using all the information gathered on correlation and causality between variables, a gene regulation network can be created</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="sequence-matching"><a class="header" href="#sequence-matching">Sequence Matching</a></h1>
 <p>Sequence matching is useful for:</p>
 <ul>
@@ -482,12 +516,82 @@ Where:</p>
 </ul>
 <p>GENESCAN is a fifth-order Markov model which was used to find genes. By looking for areas with a high &quot;CG&quot; pair content</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neural-applications"><a class="header" href="#neural-applications">Neural Applications</a></h1>
+<p>HMMs can only do so much. Predicting secondary protein structure is difficult as the data is non-local, which HMMs don't deal well with.</p>
+<p>Neural Networks can be used.</p>
+<p>NETtalk is a MLP with windowed input that is used to predict protein structure, it uses:</p>
+<ul>
+<li>Mean squared erorr as a loss function</li>
+<li>Windowed input (target and ±n context words). This allows input of an arbitrary length sequence</li>
+<li>One hot encoding for representation</li>
+</ul>
+<p>Profiling homologous proteins (same tertiary structure and approximately same secondary structure). Allows relationships between different proteins to be expressed in the coding. +5% accuracy gains</p>
+<p>One hot encoding is used for amino acids as using a scalar number would imply that amino acid 1 and 2 are more related to 1 and 20. Amino acids are not related so one hot encoding is used. </p>
+<p>The distribution of secondary structure types is not balanced, Using balanced training data will reduce the overall performance slightly. </p>
+<p>Using structural context, e.g. alpha helices are ~ 10 amino acids long and beta sheets are ~ 6 long, can be used to check valid predictions</p>
+<p><strong>PSI BLAST</strong> is a MLP based local alignment searcher. This can be used with <strong>PSI PRED</strong> to predict secondary structures ~77%</p>
+<p>Cross entropy loss + softmax is better than MLE for multi-class classification as it deals better with minority classes:</p>
+<ul>
+<li>Softmax: \( P(i) = \frac{e^{x_i}}{\sum_j e^{x_j}} \)</li>
+<li>Cross entropy Loss:  \( H(y, q) = - \sum^N_{i=1} y_i \log q_i \)</li>
+</ul>
+<h4 id="deep-learning"><a class="header" href="#deep-learning">Deep learning</a></h4>
+<p>To get better results we need deep neural nets (DNNs). Where are neural networks with 3 or more layers. </p>
+<p><strong>LSTMs</strong> are recurrent memory cells with allow networks to learn long range dependencies. This makes them good at language modelling, protein homology detection.</p>
+<p><strong>Deep belief nets</strong> learn a layer at a time, which is then fixed before learning the next layer. This has applications for estimating protein model quality and stability predictions. </p>
+<p><strong>Convolutional neural nets</strong> are inspired by the visual cortex. Uses filters and weight sharing. This is mainly used in computer vision which has many uses is biology such as classifying medical imagery and gene expressions</p>
+<p><strong>Auto encoders</strong> are used to encode information, such as word or DNA to vectors by learning a vector embedding for them. These representations can carry semantic meaning unlike other encoding forms like one hot encoding</p>
+<p><strong>Attention</strong> and <strong>Transformers</strong> are a modern architecture of DNNs where the idea is that some words are more important than others. Skip connections are also used to preserve information</p>
+<p>CASP is a competition ran twice yearly that tasks people to create the best model for predicting protein structures</p>
+<p><strong>Residual Nets</strong> such as AlphaFold are the latest in this field and variations have one every year since 2017</p>
+<p>AlphaFold is good because:</p>
+<ul>
+<li>input:
+<ul>
+<li>Multiple sequence alignment</li>
+<li>pairwise templates</li>
+</ul>
+</li>
+<li>Embeddings combine:
+<ul>
+<li>sequence alignments</li>
+<li>coevolutionary features</li>
+<li>template angles</li>
+<li>template pairwise features</li>
+</ul>
+</li>
+<li>Evoformer:
+<ul>
+<li>treats structure as spacial graph</li>
+<li>Builds graph using embeddings</li>
+<li>combines pairwise and msa embeddings</li>
+<li>48 blocks</li>
+<li>attention</li>
+</ul>
+</li>
+<li>structure:
+<ul>
+<li>uses attention</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Recycling</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="population-dynamics"><a class="header" href="#population-dynamics">Population Dynamics</a></h1>
 <p>TBC: </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="evolutionary-trees"><a class="header" href="#evolutionary-trees">Evolutionary Trees</a></h1>
 <p>TBC: </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="boolean-networks"><a class="header" href="#boolean-networks">Boolean Networks</a></h1>
 <p>TBC</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="epigenetics"><a class="header" href="#epigenetics">Epigenetics</a></h1>
+<p>Epigenetics is the modification of the gene expression though the modification of the histone proteins and the methylation of some cytosine residues in the genomic DNA. Simply put these factors can provide an on/off switch for transcription, impacting the dynamics of the transcription network.</p>
+<p>Epigenetics process are considered key determinants that lead to different diseases. </p>
+<p>Histone acetylation can suppress the gene. DNA methylation of cytosine (C) can suppress or activate the gene</p>
+<p>Stem cells have more methylated CpG islands than somatic cells, thus  it is an important mechanism for specialisation of stem cells. </p>
+<p>Epigenetics can be seen as another component in a complex boolean network</p>
+<p>Cytosine methylation is inherited, thus defining some inherited diseases. This has led it to be considered as a fifth nucleic base in the genome</p>
+<h3 id="biological-oscillators"><a class="header" href="#biological-oscillators">Biological Oscillators</a></h3>
+<p>Do we need this??</p>
 
                     </main>
 

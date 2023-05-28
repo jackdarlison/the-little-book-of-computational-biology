@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html" class="active"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="DNA.html"><strong aria-hidden="true">1.</strong> DNA</a></li><li class="chapter-item expanded "><a href="cells.html"><strong aria-hidden="true">2.</strong> Protein and Cells</a></li><li class="chapter-item expanded "><a href="transcription-networks.html"><strong aria-hidden="true">3.</strong> Transcription Networks</a></li><li class="chapter-item expanded "><a href="sequence-matching.html"><strong aria-hidden="true">4.</strong> Sequence Matching</a></li><li class="chapter-item expanded "><a href="hmm.html"><strong aria-hidden="true">5.</strong> Hidden Markov Models</a></li><li class="chapter-item expanded "><a href="neural.html" class="active"><strong aria-hidden="true">6.</strong> Neural Applications</a></li><li class="chapter-item expanded "><a href="population-dynamics.html"><strong aria-hidden="true">7.</strong> Population Dynamics</a></li><li class="chapter-item expanded "><a href="evo-trees.html"><strong aria-hidden="true">8.</strong> Evolutionary Trees</a></li><li class="chapter-item expanded "><a href="boolean-networks.html"><strong aria-hidden="true">9.</strong> Boolean Networks</a></li><li class="chapter-item expanded "><a href="epigenetics.html"><strong aria-hidden="true">10.</strong> Epigenetics</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -150,6 +150,67 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="neural-applications"><a class="header" href="#neural-applications">Neural Applications</a></h1>
+<p>HMMs can only do so much. Predicting secondary protein structure is difficult as the data is non-local, which HMMs don't deal well with.</p>
+<p>Neural Networks can be used.</p>
+<p>NETtalk is a MLP with windowed input that is used to predict protein structure, it uses:</p>
+<ul>
+<li>Mean squared erorr as a loss function</li>
+<li>Windowed input (target and ±n context words). This allows input of an arbitrary length sequence</li>
+<li>One hot encoding for representation</li>
+</ul>
+<p>Profiling homologous proteins (same tertiary structure and approximately same secondary structure). Allows relationships between different proteins to be expressed in the coding. +5% accuracy gains</p>
+<p>One hot encoding is used for amino acids as using a scalar number would imply that amino acid 1 and 2 are more related to 1 and 20. Amino acids are not related so one hot encoding is used. </p>
+<p>The distribution of secondary structure types is not balanced, Using balanced training data will reduce the overall performance slightly. </p>
+<p>Using structural context, e.g. alpha helices are ~ 10 amino acids long and beta sheets are ~ 6 long, can be used to check valid predictions</p>
+<p><strong>PSI BLAST</strong> is a MLP based local alignment searcher. This can be used with <strong>PSI PRED</strong> to predict secondary structures ~77%</p>
+<p>Cross entropy loss + softmax is better than MLE for multi-class classification as it deals better with minority classes:</p>
+<ul>
+<li>Softmax: \( P(i) = \frac{e^{x_i}}{\sum_j e^{x_j}} \)</li>
+<li>Cross entropy Loss:  \( H(y, q) = - \sum^N_{i=1} y_i \log q_i \)</li>
+</ul>
+<h4 id="deep-learning"><a class="header" href="#deep-learning">Deep learning</a></h4>
+<p>To get better results we need deep neural nets (DNNs). Where are neural networks with 3 or more layers. </p>
+<p><strong>LSTMs</strong> are recurrent memory cells with allow networks to learn long range dependencies. This makes them good at language modelling, protein homology detection.</p>
+<p><strong>Deep belief nets</strong> learn a layer at a time, which is then fixed before learning the next layer. This has applications for estimating protein model quality and stability predictions. </p>
+<p><strong>Convolutional neural nets</strong> are inspired by the visual cortex. Uses filters and weight sharing. This is mainly used in computer vision which has many uses is biology such as classifying medical imagery and gene expressions</p>
+<p><strong>Auto encoders</strong> are used to encode information, such as word or DNA to vectors by learning a vector embedding for them. These representations can carry semantic meaning unlike other encoding forms like one hot encoding</p>
+<p><strong>Attention</strong> and <strong>Transformers</strong> are a modern architecture of DNNs where the idea is that some words are more important than others. Skip connections are also used to preserve information</p>
+<p>CASP is a competition ran twice yearly that tasks people to create the best model for predicting protein structures</p>
+<p><strong>Residual Nets</strong> such as AlphaFold are the latest in this field and variations have one every year since 2017</p>
+<p>AlphaFold is good because:</p>
+<ul>
+<li>input:
+<ul>
+<li>Multiple sequence alignment</li>
+<li>pairwise templates</li>
+</ul>
+</li>
+<li>Embeddings combine:
+<ul>
+<li>sequence alignments</li>
+<li>coevolutionary features</li>
+<li>template angles</li>
+<li>template pairwise features</li>
+</ul>
+</li>
+<li>Evoformer:
+<ul>
+<li>treats structure as spacial graph</li>
+<li>Builds graph using embeddings</li>
+<li>combines pairwise and msa embeddings</li>
+<li>48 blocks</li>
+<li>attention</li>
+</ul>
+</li>
+<li>structure:
+<ul>
+<li>uses attention</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Recycling</li>
+</ul>
 
                     </main>
 

@@ -126,3 +126,36 @@ It is often used to check the validity of other models such as ODEs and Monte Ca
 
 However, computers are not fast enough to truly simulate chemical reactions. Chemical reactions can happen orders of magnitude faster, we may need to approximate or assume a quasi-equilibrium. 
 
+#### Creating a Transcription Network
+*for stem cell differentiation*
+
+The first step is establishing the relative concentrations of different mRNA present within the cells at different timepoints. 
+
+Correlation does not always imply causation:
+- X could affect Y
+- Y could affect X
+- X and Y could be independent, but affected by Z
+
+For each mRNA we have a sequence of concentrations over time. From this we can determine if two mRNA molecules are correlated (excitation) or anti-correlated (inhibition)
+
+Pearson correlation is a measure of linear correlation between two sets of data, which measures correlation with cosine similarity. Which can be used to determine if the two mRNA molecules are correlated
+
+From the correlations/relationships we can create a gene regulation network. However we do not know about causation. 
+
+Two random variables are statistically independent if P(X, Y) = P(X)P(Y), which implies the variables uncorrelated and have no causality. 
+
+However, statistical independence is too powerful. So we use Conditional independence instead, i.e. P(X, Y|Z) = P(X|Z)P(Y|Z). This shows that we can have correlation but no direct causation between the two variables. 
+
+It is very difficult to obtain a measure of causational probability, the best we can do is find an explanation of our variables with as few causal interactions as possible. 
+
+It is possible to create a *Multi-variate Normal Distribution* to give a measure of correlation between two points. By finding the covariance  of the two points, and dividing by the square-root of the two individual variances. This can be used to create a matrix of correlation between two points:
+
+\\[ q_{ij} = \frac{Cov(X_i, X_j)}{\sqrt{Var(X_i)Var(X_j)}} \\]
+
+This can be used to find conditional independence between the variables, using maximum log-likelihood analysis. 
+
+Regularisation, pushes some coordinates to 0 of the covariance matrix, allowing conditional independent variable to be considered with other variables.
+
+Using all the information gathered on correlation and causality between variables, a gene regulation network can be created
+
+
