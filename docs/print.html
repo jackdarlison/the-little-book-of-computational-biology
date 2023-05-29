@@ -709,7 +709,51 @@ Where:</p>
 <p>\[ f_{eq}(x) = \frac{x^{2Nm-1}(1-x)^{Nn-1}e^{2Nsx}}{\text{Betaln}(2Nm, 2Nn)\text{Hyp1f1}(2Nm; 2N(m + n); 2Nsx)} \]</p>
 <p>This is a valid approximation as evolution is slow, which means the steady state is often seen. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="evolutionary-trees"><a class="header" href="#evolutionary-trees">Evolutionary Trees</a></h1>
-<p>TBC: </p>
+<p><strong>Phylogeny</strong> is the study of the evolution of a species or group. This is usually represented using a tree, which help groups the different kinds of living things </p>
+<p>The Tree is built up from external features as well as DNA. However, feature based trees can be misleading due to convergent evolution </p>
+<p>We can see using Mitochondrial DNA that all Humans share a common ancestor from around 155,000 years ago. Mitochondrial DNA only comes from the mother, thus it is asexually passed on. Cross breeding with other hominids meant over time only homo-sapians were left. </p>
+<p>Statistically asexual reproduction creates to a single line from one original ancestor to the entire current generation.</p>
+<p>Entire Life <strong>Phylogenetic</strong> trees are not actually trees as horizontal gene transfer is present in Bacteria and Archaea. These reproduce asexually but can exchange DNA to evolve. </p>
+<p>However As most multicellular organisms cannot interbreed, we can model them using trees. </p>
+<p>To use DNA to build up a phylogeny tree we look at Homologous (the same) genes. Genes that diverge due to speciation are orthologues whereas genes that diverge due to supplication are paralogues. To understand how species relate to each other we need to use orthologues.</p>
+<p>To build a tree we need a molecular clock. To do this we presume that mutations occur at a constant rate; they don't due to selection and random processes so it is best to use large sequences.</p>
+<p>A perfect molecular clock would give us an ultra metric structure, i.e. long-sided isosceles. Defined as for any three nodes, the maximum distance between two is <strong>not</strong> unique</p>
+<h4 id="distance-based-trees"><a class="header" href="#distance-based-trees">Distance Based Trees</a></h4>
+<p>These trees explain a table of distances between DNA, e.g. sequence edit distance</p>
+<p>Unweighted Pairwise Group Method using Arithmetic Averaging (<strong>UPGMA</strong>) is a method of creating a distance based tree. All nodes begin in single node clusters then we repeat until all merged:</p>
+<ul>
+<li>Calculate the distance between clusters: \( d_{kl} = \frac{1}{|C_k||C_l|}\sum_{p\in C_k; q\in C_l}d_pq \)</li>
+<li>Repeat Select the two clusters</li>
+<li>Remove all nodes and replace with a joined cluster</li>
+<li>Distance to remaining clusters are: \( d_{kl} = \frac{d_il|C_i| + d_{jl}|C_j|}{|C_i| + |C_j|} \)</li>
+</ul>
+<p>For a distance metric between two sequences we could use the negative log of (1 - number of mismatched letters): \( d_{ij} = -\log(1-p_{ij}) \) </p>
+<p>UPGMA imposes the ultra metric structure on trees. however, we can not always assume that trees will be ultra-metric.</p>
+<p>UPGMA gives a good idea of evolutionary time</p>
+<p>Another distance based tree are <strong>Additive Trees</strong>, which don't assume a perfect molecular clock and thus don;t assume the tree is ultra-metric.</p>
+<p>Instead we assume <strong>Additivity</strong>, which assumes that mutations accumulate but not at a constant rate. In addition, mutations are independent of each other. </p>
+<p>For additive trees the closest nodes are not necessarily neighbours, so we cant just pick the closest two pairs and join them. We need to compensate for high weighted arcs. To do this we subtract the averaged distances from each node to all other nodes:</p>
+<p>\[ D_{ab} = d_{ab} - r_a - r_b; \text{ where }r_i = \frac{1}{|L| - 2}\sum_{n\in L}d_{in} \]</p>
+<p>We then repeat until all nodes joined:</p>
+<ul>
+<li>Create new node k and join the two closest nodes to it (smallest \(D_{ij} \))</li>
+<li>Calculate the distances \( d_{ki} \) between k and all other nodes</li>
+<li>Calculate distances from k to both i and j using \( d_{ki} = \frac{1}{2}(d_{ij} + r_i - r_j) \)</li>
+<li>Calculate the weighted distance \( D_{ki} \) between k and all other nodes</li>
+<li>Remove i and j from the distance matrix and add k</li>
+</ul>
+<p>Additivity requires that mutations accumulate. However this does not happen where backward mutations exist and two species find the same mutation. Thus, it is better to use parts of the genome which are known to not have backward mutations</p>
+<p>Additive trees give a good idea of evolutionary distance. </p>
+<h4 id="sequence-based-trees"><a class="header" href="#sequence-based-trees">Sequence Based Trees</a></h4>
+<p>We want to find the tree that explains the evolutionary history of a set of sequences with as few mutations as possible </p>
+<p>We can use maximum parsimony trees for this, which uses aligned sequences. However, there is no efficient algorithm for this so need to iterate through all possible trees</p>
+<p>We want to find the lowest cost tree. we need to create a cost:</p>
+<ul>
+<li>Assume each site is independent</li>
+<li>Assumes a binary tree where leaves are sequences</li>
+<li>Total cost is the sum of the costs at each site (this could be number of substitutions are BLOSUM50 costs, etc. )</li>
+</ul>
+<p>We then enumerate all the trees to find the one with the lowest cost. However this is costly. We can use Branch and Bound (i.e. pruning) to reduce the search space. This involves removing subtrees which have a higher cost than the cheapest found as it can never become cheaper</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="boolean-networks"><a class="header" href="#boolean-networks">Boolean Networks</a></h1>
 <p>TBC</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="epigenetics"><a class="header" href="#epigenetics">Epigenetics</a></h1>
